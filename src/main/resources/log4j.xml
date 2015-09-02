@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<!--
+	<appender name="flumeAppender" class="org.apache.flume.clients.log4jappender.Log4jAppender">
+		<param name="Hostname" value="127.0.0.1" />
+		<param name="Port" value="41414" />
+	</appender>
+-->
+	<appender name="CONSOLE" class="org.apache.log4j.DailyRollingFileAppender">
+                <param name="File" value="/home/admin/logs/app.log"/>
+                <param name="DatePattern" value="'.'yyyy-MM-dd'.log'" />
+                <layout class="org.apache.log4j.PatternLayout">
+                        <param name="ConversionPattern" value="%d %p - %C[%L] - %m \n" />
+                </layout>
+        </appender>
+	
+	<category name="org.springframework" additivity="false">
+		<priority value="ERROR"/>
+		<appender-ref ref="CONSOLE" />
+	</category>
+	
+	<root>
+		<priority value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+
+</log4j:configuration>

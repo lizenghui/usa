@@ -1,0 +1,60 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:saf="http://code.360buy.com/schema/saf"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://code.360buy.com/schema/saf 
+        http://code.360buy.com/schema/saf/saf.xsd"
+	default-autowire="byName">
+
+	<!-- 
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+         <property name="locations">
+                 <list>
+                         <value>classpath:props/*.properties</value>
+                         <value>classpath:important.properties</value>
+                 </list>
+         </property>
+         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"></property>
+    </bean>
+	 -->
+	<context:component-scan base-package="com.controller" />
+
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="/WEB-INF/vm/" />
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">UTF-8</prop>
+				<prop key="output.encoding">UTF-8</prop>
+				<prop key="contentType">text/html;charset=UTF-8</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="velocityViewResolver"
+		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+		<property name="cache" value="false" />
+		<property name="prefix" value="" />
+		<property name="suffix" value=".vm" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="dateToolAttribute" value="dateTool" />
+		<property name="numberToolAttribute" value="numberTool" />
+		<!-- Merge urlBuilderMap to view context for convenience. You can put your 
+			tools which must be thread safe. -->
+		<!-- <property name="attributesMap" ref="_urlBuilderMap" /> -->
+		<property name="contentType" value="text/html;charset=UTF-8" />
+	</bean>
+<!--	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="viewClass"><value>org.springframework.web.servlet.view.JstlView</value></property> 
+		<property name="prefix"><value>/WEB-INF/jsp/</value></property> 
+		<property name="suffix"><value>.jsp</value></property> 
+	</bean> 
+-->	
+</beans>
