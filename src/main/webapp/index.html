@@ -8,13 +8,14 @@
 	<link rel="stylesheet" href="css/base.css"/>
 	<link rel="stylesheet" href="css/iosOverlay.css">
 	<link rel="stylesheet" href="css/tabs.css">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 	<p />
 	<ul id="tabs">
 		<li><a href="#" title="tab1">One</a></li>
 		<li><a href="#" title="tab2" onclick="document.getElementById('downloadFrm').src='/downloads/';">Two</a></li>
-		<li><a href="#" title="tab3">Three</a></li>
+		<li><a href="#" title="tab3" onclick="createQR(window.location)">Three</a></li>
 		<li><a href="#" title="tab4">Four</a></li>
 	</ul>
 	<div id="content">
@@ -55,11 +56,18 @@
 		<iframe id="downloadFrm" width="100%" scrolling="auto" marginwidth="0"i marginheight="0" height="500" frameborder="0" src=""></iframe>
 	  </div>
 	  <div id="tab3">
-	    <h2>Phasellus non nibh</h2>
-	    <p>Non erat laoreet ullamcorper. Pellentesque magna metus, feugiat eu elementum sit amet, cursus sed diam. Curabitur posuere porttitor lorem, eu malesuada tortor faucibus sed.</p>
-	    <h3>Duis pulvinar nibh vel urna</h3>
-	    <p>Donec purus leo, porttitor eu molestie quis, porttitor sit amet ipsum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec accumsan ornare elit id imperdiet. </p>
-	    <p>Suspendisse ac libero mauris. Cras lacinia porttitor urna, vitae molestie libero posuere et. </p>
+		<form action="" method="post" class="smart-green">
+			<h1>QR Code Generator
+				<span>Please fill the text in the textarea.</span>
+			</h1>
+			<label id="qrcode">
+			</label>
+			<textarea id="text" name="message"></textarea>
+			<label>
+			<span>&nbsp;</span>
+			<input type="button" id="create" class="button" value="Create" />
+			</label>
+		</form>
 	  </div>
 	  <div id="tab4">
 	    <h2>Cum sociis natoque penatibus</h2>
@@ -71,19 +79,24 @@
 	</div>
 <script src="js/iosOverlay.js"></script>
 <script src="js/spin.min.js"></script>
+<script src="js/qrcode.js"></script>
 <script>
 $(document).ready(function() {
 	$("#content div").hide(); // Initially hide all content
 	$("#tabs li:first").attr("id","current"); // Activate first tab
 	$("#content div:first").fadeIn(); // Show first tab content
     
-    $('#tabs a').click(function(e) {
-        e.preventDefault();        
-        $("#content div").hide(); //Hide all content
-        $("#tabs li").attr("id",""); //Reset id's
-        $(this).parent().attr("id","current"); // Activate this
-        $('#' + $(this).attr('title')).fadeIn(); // Show content for current tab
-    });
+	$('#tabs a').click(function(e) {
+		e.preventDefault();        
+		$("#content div").hide(); //Hide all content
+		$("#tabs li").attr("id",""); //Reset id's
+		$(this).parent().attr("id","current"); // Activate this
+		$('#' + $(this).attr('title')).fadeIn(); // Show content for current tab
+	});
+
+	$('#create').click(function(e) {
+		createQR($("#text").val());
+	});
 });
 </script>
 </body>

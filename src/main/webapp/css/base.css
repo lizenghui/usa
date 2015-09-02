@@ -32,6 +32,13 @@ color: #FFF;
 display: block;
 margin: 0px 0px 5px;
 }
+.smart-green label#qrcode {
+display: block;
+margin: 15px auto 15px;
+}
+.smart-green label#qrcode img{
+margin: 0 auto;
+}
 .smart-green label>span {
 float: left;
 margin-top: 10px;
@@ -54,6 +61,12 @@ font: normal 14px/14px Arial, Helvetica, sans-serif;
 .smart-green textarea{
 height:100px;
 padding-top: 10px;
+}
+
+.smart-green textarea#text{
+height:50px;
+padding-top: 10px;
+margin-top:100;
 }
 .smart-green select {
 background: url('down-arrow.png') no-repeat right, -moz-linear-gradient(top, #FBFBFB 0%, #E9E9E9 100%);
